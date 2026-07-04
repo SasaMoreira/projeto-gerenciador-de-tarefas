@@ -1,32 +1,37 @@
 # Crindo lista p/ adcionar tarefa
 tarefas=[]
-# Definindo a nossa função ADCIONAR_TAREFAS; Parâmetros
-#
-def adicionar_tarefa(tarefa: str): 
+# Definindo a nossa função ADCIONAR_TAREFAS; Parâmetros (Convertidos em string)
+def adicionar_tarefa(x: str): 
     # Criando um dicionário com diferentes dataTypes;
     # Avaliar os vários status de uma mesma tarefa.
     dict_tarefa = {
-        'tarefa': tarefa,
+        'tarefa': x,
         'esta_feita': False
     }
-    # Permitir que novas tarefas 
+    # Permitir que novas tarefas sejam adcionadas
     tarefas.append(dict_tarefa)
 
 # Definindo a função LISTAR_TAREFAS
 def listar_tarefas():
-    #Iteração da lista
+    #Iterando o dicionário
     for tarefa in tarefas:
-        #Iteração dos COMPONENTES do DICIONÁRIO
+        #Para cada tarefa, itere os COMPONENTES do DICIONÁRIO
         for chave, valor in tarefa.items():
             # SE a chave do dict for uma str ENTAO imprima.
             if chave == "tarefa":
                 print(valor)
 
+# Definindo a função para persistir os dados recebidos
+def salvar_tarefa(tarefas):
+    with open(ARQUIVO_DE_TAREFAS, "w", encoding="utf-8") as file:
+        #Salvando a lista de tarefas como JSON formatado
+        json.dump(tarefas, file, ensure_ascii=False, indent=4)
+
 # Iniciando a rotina principal
 print("Bem vindo ao gerenciador de tarefas")
 while True: 
     tarefa_informada = input("Digite sua tarefa: ")
-    
+
     #tarefas.append(tarefa)
     adicionar_tarefa(tarefa_informada)
     
@@ -36,10 +41,3 @@ while True:
         # Chamando a função para add novoc itens na lista
         listar_tarefas()
 
-'''adicionar_tarefa(tarefa="tarefa 1")    
-adicionar_tarefa(tarefa="tarefa 2") 
-adicionar_tarefa(tarefa="tarefa 3") 
-adicionar_tarefa(tarefa="tarefa 4") 
-adicionar_tarefa(tarefa="tarefa 5") 
-listar_tarefas()
-#print(tarefas)'''
