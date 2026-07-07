@@ -52,14 +52,29 @@ tarefas=[]
 # Iniciando a rotina principal
 print("Bem vindo ao gerenciador de tarefas")
 while True: 
-    tarefa_informada = input("Digite sua tarefa: ")
+    # Verificando se já tem tarefas
+    tarefas = carregar_tarefas
 
-    #tarefas.append(tarefa)
-    adicionar_tarefa(tarefa_informada)
+    print("---------- Gerenciador de Tarefas ---------- ")
+
+    print("1 - Adicionar Tarefa")
+    print("2 - Listar tarefas existentes")
+    print("3 - Finalize uma tarefa")
+    print("4 - fechar o programa")
+ 
+    try:
+        opcao = int(input("---------- Digite a opção desejada: ----------"))
+
+    except:
+        print("Opção Inválida. Por favor, digite um número!")
+        
+    if opcao == 1:
+        adicionar_tarefa()
     
-    # Contando a quantidade e checando se é maior que 0
-    if len(tarefas) > 0:
-        print("Tarefas a serem feitas:")
-        # Chamando a função para add novoc itens na lista
+    elif opcao == 2:
         listar_tarefas()
 
+    elif opcao == 3:
+        finalizar_tarefa(
+        break
+        )    
