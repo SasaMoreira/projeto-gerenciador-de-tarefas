@@ -56,7 +56,35 @@ def listar_tarefas():
     for i, tarefa in enumerate(tarefas, start=1):
         print(f"{i} - {tarefa['tarefa']}")
 
+def finalizar_tarefa():
+    #Verifica se há alguma tarefa para finalizar
+    if not tarefas:
+        print("Nenhuma tarefa cadastarada. \n")
+        return
+    
+    # Exibe a lista de tarefas com índice
+    listar_tarefas()
 
+    # Solicita ao usuário o índice da tarefa a ser finalizada
+    try:
+        index = int(input("Digite o número da tarefa que deseja finalizar: ")) - 1
+    except ValueError:
+        print("Você precisa digitar o valor de uma tarefa existente:")
+        return
+
+    #Valida se o índice existe
+    if index < 0 or index >= len(tarefas):
+        print("Índice Inválido\n")
+        return    
+    
+    # Removendo a tarefa da lista
+    tarefa_removida = tarefas.pop(index)
+
+    salvar_tarefa(tarefas)
+
+    print(f"Tarefa feita!\n")
+    print(f"Você completou: {tarefa_removida['tarefa']}.\n")
+    
 
 # Iniciando a rotina principal
 print("Bem vindo ao gerenciador de tarefas")
